@@ -42,7 +42,7 @@ export function maxAndMin(numbers) {
 
     let max = Math.max(...numbers);
     let min = Math.min(...numbers);
-    return {min, max};
+    return {max, min};
 }
 
 /**
@@ -57,11 +57,11 @@ export function maxAndMin(numbers) {
  */
 export function countArray(array) {
     let out = new Map();
-    for (obj in array) {
+    for (let key in array) {
         if (out.hasOwnProperty(obj)) {
-            out[obj] += 1;
+            out[key] += 1;
         } else {
-            out[obj] = 1;
+            out[key] = 1;
         }
     }
 }
