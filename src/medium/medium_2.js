@@ -19,10 +19,39 @@ see under the methods section
  *
  * @param {allCarStats.ratioHybrids} ratio of cars that are hybrids
  */
+function averagempg(object) {
+    let cityavg, highwayavg;
+    var size = Object.keys(object).length;
+    for (let car in object) {
+        cityavg += car[city_mpg];
+        highwayavg += car[highway_mpg];
+    }
+    cityavg = cityavg/size;
+    highwayavg = highwayavg/size;
+    return {cityavg, highwayavg};
+}
+function allyears(object) {
+    let years = [];
+    for (let car in object) {
+        years.push(object[car[year]]);
+    }
+    return years;
+}
+function hybridratio(object) {
+    let hybridcount = 0;
+    var size = Object.keys(object).length;
+    for (let car in object) {
+        if (car[hybrid]) {
+            hybridcount++;
+        }
+    }
+    return hybridcount/size;
+
+}
 export const allCarStats = {
-    avgMpg: undefined,
-    allYearStats: undefined,
-    ratioHybrids: undefined,
+    avgMpg: {city: averagempg(mpg_data)[cityavg], highway: averagempg(mpg_data)[highwayavg]},
+    allYearStats: {getStatistics(allyears)},
+    ratioHybrids: {hybridratio(mpg_data)},
 };
 
 
@@ -83,6 +112,10 @@ export const allCarStats = {
  *
  * }
  */
+function makerhybrids(object) {
+    let makes = [];
+    
+}
 export const moreStats = {
     makerHybrids: undefined,
     avgMpgByYearAndHybrid: undefined
