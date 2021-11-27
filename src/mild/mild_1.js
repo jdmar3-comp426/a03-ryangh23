@@ -41,7 +41,7 @@ export function getIncreasingArray(startNumber, endNumber) {
 export function maxAndMin(numbers) {
     max = Math.max(numbers);
     min = Math.min(numbers);
-    return {"min": min, "max": max};
+    return {min, max};
 }
 
 /**
@@ -56,8 +56,8 @@ export function maxAndMin(numbers) {
  */
 export function countArray(array) {
     out = new Map();
-    for (obj in countArray) {
-        if (obj in out) {
+    for (obj in array) {
+        if (out.hasOwnProperty(obj)) {
             out[obj] += 1;
         } else {
             out[obj] = 1;
