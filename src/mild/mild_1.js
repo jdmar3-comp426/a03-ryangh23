@@ -24,7 +24,7 @@ export function sumToString(a, b) {
  * 
  */
 export function getIncreasingArray(startNumber, endNumber) {
-    out = [];
+    let out = [];
     for(let i = 0; i < endNumber - startNumber + 1; i++) {
         out.push(i + startNumber);
     }
@@ -40,8 +40,8 @@ export function getIncreasingArray(startNumber, endNumber) {
  */
 export function maxAndMin(numbers) {
 
-    let max = Math.max(numbers);
-    let min = Math.min(numbers);
+    let max = Math.max(...numbers);
+    let min = Math.min(...numbers);
     return {min, max};
 }
 
@@ -56,7 +56,7 @@ export function maxAndMin(numbers) {
  *
  */
 export function countArray(array) {
-    out = new Map();
+    let out = new Map();
     for (obj in array) {
         if (out.hasOwnProperty(obj)) {
             out[obj] += 1;
