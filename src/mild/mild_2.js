@@ -7,7 +7,8 @@
  */
 export function identifyVariable(variable) {
    let type = typeof variable;
-   return {type, variable};
+   let value = variable;
+   return {type, value};
 }
 
 
@@ -26,10 +27,8 @@ export function identifyVariable(variable) {
  */
 export function identifyArray(array) {
    let out = [];
-   for (let elem in array) {
-      let type = typeof elem;
-      let outElem = {type, elem};
-      out.push(outElem);
+   for (let i = 0; i < array.length; i++) {
+      out.push(identifyVariable(array[i]));
    }
    return out;
 }
