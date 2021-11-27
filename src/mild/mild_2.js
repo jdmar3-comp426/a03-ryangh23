@@ -100,7 +100,7 @@ export function removeKeyNonDestructive(object, key) {
 export function removeKeys(object, keyList) {
    let out = object;
    for (let key in keyList) {
-      out = removeKeyNonDestructive(out, key);
+      out = delete out[key];
    }
    return out;
 }
