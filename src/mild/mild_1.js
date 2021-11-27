@@ -58,7 +58,7 @@ export function maxAndMin(numbers) {
 export function countArray(array) {
     let out = new Map();
     for (let key in array) {
-        if (out.hasOwnProperty(obj)) {
+        if (out.hasOwnProperty(key)) {
             out[key] += 1;
         } else {
             out[key] = 1;
