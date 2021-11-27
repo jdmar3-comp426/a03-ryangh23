@@ -50,8 +50,8 @@ function hybridratio(object) {
 }
 export const allCarStats = {
     avgMpg: {city: averagempg(mpg_data)[cityavg], highway: averagempg(mpg_data)[highwayavg]},
-    allYearStats: {getStatistics(allyears)},
-    ratioHybrids: {hybridratio(mpg_data)},
+    allYearStats: getStatistics(allyears(mpg_data)),
+    ratioHybrids: hybridratio(mpg_data)
 };
 
 
@@ -114,9 +114,27 @@ export const allCarStats = {
  */
 function makerhybrids(object) {
     let makes = [];
-    
+    let makersAndHybrids = [];
+    for (let car in object) {
+        if (!makes.includes(car[make])) {
+            makes.push(car[make])
+        }
+    }
+    for (let i = 0; i < makes.length; i++) {
+        makersAndHybrids.push({});
+        let hybridslist = [];
+        for (let car in object) {
+            if (makes[i] === car[make]) {
+                if (car[hybrid]) {
+                    hybridslist.push(car[id]);
+                }
+            }
+        }
+        makersAndHybrids[i][make] = makes[i];
+        makersAndHybrids[i][hybrids] = hybridslist;
+    } 
 }
 export const moreStats = {
-    makerHybrids: undefined,
+    makerHybrids: makerhybrids(mpg_data),
     avgMpgByYearAndHybrid: undefined
 };
