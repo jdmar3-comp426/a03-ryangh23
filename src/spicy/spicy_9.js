@@ -17,7 +17,7 @@
 export const repeat = (fn, n, ...params) => {
     let outs = [];
     for (let i = 0; i < n; i++) {
-        out.push(fn(params));
+        outs.push(fn(params));
     }
     return outs;
 };
@@ -48,10 +48,9 @@ export const repeatDemo = () => {
  *   product of num1 and num2.
  */
 export const multiplyBy = (num1) => {
-    function multiplier(num2) {
+    return (num2) => {
         return num1 * num2;
     }
-    return multiplier(num2);
 };
 
 
@@ -60,8 +59,7 @@ export const multiplyBy = (num1) => {
  *   "tenTimes" that multiplies a number by 10.
  */
 export const tenTimes = (a) => {
-    let num2 = 10;
-    return multiplyBy(a);
+    return multiplyBy(a)(10);
 };
 
 
@@ -98,6 +96,9 @@ export const tenTimesFifty = () => {
  *    everyEven([1, 1, 0, 1, 1], x => x === 1)  <--  returns false
  */
 export const everyEven = (arr, test) => {
+    if (arr.length === 0) {
+        return false;
+    }
     for (let i = 0; i < arr.length; i++) {
         let x = arr[i]
         if (!test(x)) {
@@ -128,6 +129,9 @@ export const everyEven = (arr, test) => {
  *    someEven([0, 0, 0, 0, 0], x => x === 0)  <--  returns true
  */
 export const someEven = (arr, test) => {
+    if (arr.length === 0) {
+        return false;
+    }
     for (let i = 0; i < arr.length; i++) {
         let x = arr[i]
         if (test(x)) {
@@ -160,7 +164,7 @@ export const someEven = (arr, test) => {
  *       -->  { pass: [1, 5, 31], fail: [90] }
  */
 export const filter = (arr, test) => {
-    let out = { pass: [], fail: [] };
+    let out = { pass: passes, fail: fails };
     for (let i = 0; i < arr.length; i++) {
         let x = arr[i];
         if (test(x)) {
@@ -215,7 +219,7 @@ export const anEvenIsOdd = (arr) => {
  */
 export const hasExactly = (arr, test, n) => {
     let results = filter(arr, test);
-    if (filter["pass"].length === n) {
+    if (results["pass"].length === n) {
         return true;
     } else {
         return false;
