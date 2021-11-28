@@ -15,7 +15,7 @@
  *                from calling the function
  */
 export const repeat = (fn, n, ...params) => {
-    outs = [];
+    let outs = [];
     for (let i = 0; i < n; i++) {
         out.push(fn(params));
     }
@@ -60,7 +60,7 @@ export const multiplyBy = (num1) => {
  *   "tenTimes" that multiplies a number by 10.
  */
 export const tenTimes = (a) => {
-    num2 = 10;
+    let num2 = 10;
     return multiplyBy(a);
 };
 
@@ -160,7 +160,7 @@ export const someEven = (arr, test) => {
  *       -->  { pass: [1, 5, 31], fail: [90] }
  */
 export const filter = (arr, test) => {
-    let out = {pass: [], fail: []};
+    let out = { pass: [], fail: [] };
     for (let i = 0; i < arr.length; i++) {
         let x = arr[i];
         if (test(x)) {
