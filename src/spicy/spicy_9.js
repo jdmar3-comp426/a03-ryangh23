@@ -164,9 +164,9 @@ export const filter = (arr, test) => {
     for (let i = 0; i < arr.length; i++) {
         let x = arr[i];
         if (test(x)) {
-            out[pass].push(x);
+            out["pass"].push(x);
         } else {
-            out[fail].push(x);
+            out["fail"].push(x);
         }
     }
     return out;
@@ -180,7 +180,7 @@ export const filter = (arr, test) => {
  */
 export const allEvensAreOdd = (arr) => {
     function oddNumber(number) {
-        if (x%2 === 1) {
+        if (number%2 === 1) {
             return true;
         } else {
             return false;
@@ -197,7 +197,7 @@ export const allEvensAreOdd = (arr) => {
  */
 export const anEvenIsOdd = (arr) => {
     function oddNumber(number) {
-        if (x%2 === 1) {
+        if (number%2 === 1) {
             return true;
         } else {
             return false;
@@ -215,7 +215,7 @@ export const anEvenIsOdd = (arr) => {
  */
 export const hasExactly = (arr, test, n) => {
     let results = filter(arr, test);
-    if (filter[pass].length === n) {
+    if (filter["pass"].length === n) {
         return true;
     } else {
         return false;
