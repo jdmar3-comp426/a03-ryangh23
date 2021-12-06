@@ -19,10 +19,39 @@ see under the methods section
  *
  * @param {allCarStats.ratioHybrids} ratio of cars that are hybrids
  */
+function averagempg(object) {
+    let cityavg, highwayavg;
+    var size = Object.keys(object).length;
+    for (let car in object) {
+        cityavg += car[city_mpg];
+        highwayavg += car[highway_mpg];
+    }
+    cityavg = cityavg/size;
+    highwayavg = highwayavg/size;
+    return {cityavg, highwayavg};
+}
+function allyears(object) {
+    let years = [];
+    for (let car in object) {
+        years.push(object[car[year]]);
+    }
+    return years;
+}
+function hybridratio(object) {
+    let hybridcount = 0;
+    var size = Object.keys(object).length;
+    for (let car in object) {
+        if (car[hybrid]) {
+            hybridcount++;
+        }
+    }
+    return hybridcount/size;
+
+}
 export const allCarStats = {
-    avgMpg: undefined,
-    allYearStats: undefined,
-    ratioHybrids: undefined,
+    avgMpg: {city: averagempg(mpg_data)[cityavg], highway: averagempg(mpg_data)[highwayavg]},
+    allYearStats: getStatistics(allyears(mpg_data)),
+    ratioHybrids: hybridratio(mpg_data)
 };
 
 
@@ -83,7 +112,29 @@ export const allCarStats = {
  *
  * }
  */
+function makerhybrids(object) {
+    let makes = [];
+    let makersAndHybrids = [];
+    for (let car in object) {
+        if (!makes.includes(car[make])) {
+            makes.push(car[make])
+        }
+    }
+    for (let i = 0; i < makes.length; i++) {
+        makersAndHybrids.push({});
+        let hybridslist = [];
+        for (let car in object) {
+            if (makes[i] === car[make]) {
+                if (car[hybrid]) {
+                    hybridslist.push(car[id]);
+                }
+            }
+        }
+        makersAndHybrids[i][make] = makes[i];
+        makersAndHybrids[i][hybrids] = hybridslist;
+    } 
+}
 export const moreStats = {
-    makerHybrids: undefined,
+    makerHybrids: makerhybrids(mpg_data),
     avgMpgByYearAndHybrid: undefined
 };
